@@ -1,5 +1,4 @@
 let menu = "1- inciar sesion \n2- iniciar con otra cuenta \n3- salir"
-//let lista= "Bienvenido a Impresiones-VK 3D! Indique que decea hacer: \n1- Comprar \n2- Horario de atencion \n3- Nuestro contacto \n4- volver al menu de inicio "
 
 let user = "claudio"
 let pass= 12345
@@ -41,7 +40,7 @@ do{
     opcion = Number(prompt("ingrese el numero de la opcion"))
     let usuario ;
     let contrasena ;
-
+    
 }while(opcion!==1 && opcion!==2 && opcion!==3){
     if(opcion===1){
         usuario = prompt("ingrese usuario")
@@ -62,3 +61,64 @@ do{
         alert(`Vuelva pronto`)
     }
 }
+//Segundo menu
+let productos = [
+    {
+        id:1,
+        marca:"printalot",
+    },
+
+    {
+        id:2,
+        marca:"grilot",
+    },
+
+    {
+        id:3,
+        marca:"sans",
+    }
+]
+
+//Lista de almacen por producto
+
+let almacenesPrintalot = [
+    {id: 1, tipo:"pla", precio: 3500 },
+    {id:2 , tipo: "abs", precio: 4000},
+    {id: 3, tipo: "elastica", precio: 5000}
+]
+
+let almacenesGrilot = [
+    {id: 1, tipo:"pla", precio: 3500 },
+    {id:2 , tipo: "abs", precio: 4000}
+]
+
+let almacenesSans = [
+    {id: 1, tipo:"pla", precio: 3500 }
+]
+
+ let listaProductos = "ingrese el numero de la marca que le interesa \n" + productos.map(producto => producto.id + " " + producto.marca).join("\n")
+let opcion2
+
+let almacenesPr = "Elija el numero de material Printalot que decea comprar \n" + almacenesPrintalot.map(almacen => almacen.id +" "+ almacen.tipo +" "+ almacen.precio).join("\n")
+let opcionAlmacenP
+
+let almacenesGt = "Elija el numero de material Grilot que decea comprar \n" + almacenesGrilot.map(almacenG => almacenG.id +" "+ almacenG.tipo +" "+ almacenG.precio).join("\n")
+let opcionAlmacenG
+
+let almacenesSs = "Elija el numero de material Sans que decea comprar \n" + almacenesSans.map(almacenS => almacenS.id +" "+ almacenS.tipo +" "+ almacenS.precio).join("\n")
+let opcionAlmacenS
+
+do {
+    opcion2 = Number(prompt(listaProductos))
+} while (opcion2!==1 && opcion2!==2 && opcion2!==3);
+if (opcion2 === 1) {
+    opcionAlmacenP = Number(prompt(almacenesPr))
+} else if(opcion2 ===2){
+    opcionAlmacenG = Number(prompt(almacenesGt))
+}else if (opcion2 ===3){
+    opcionAlmacenS = Number(prompt(almacenesSs))
+}else{
+
+}
+
+

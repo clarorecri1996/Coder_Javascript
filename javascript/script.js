@@ -34,6 +34,7 @@ function reintentar() {
         }
     }
 }
+
 //Inicio sesion
 do{
     alert (menu)
@@ -56,7 +57,15 @@ do{
     }else if(opcion===2){
         userNew = prompt(`ingrese nuevo usuario`)
         passNew = prompt(`ingrese nueva contraseña`)
-        alert(`Bienvenido ${userNew} su contraseña es ${passNew}`)
+        function NuevoUsuario (userNew, passNew){
+            this.userNew = userNew
+            this.passNew = passNew
+            this.nuevaSesion = function(){
+                return this.userNew +" "+ this.passNew
+            }
+        }
+        let usuario1 = new NuevoUsuario(userNew, passNew)
+        alert ("su nuevo usuario y contraseña son" + " " +usuario1.nuevaSesion())
     }else{
         alert(`Vuelva pronto`)
         .break

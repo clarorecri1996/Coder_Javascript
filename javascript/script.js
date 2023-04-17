@@ -72,76 +72,96 @@ do{
     }
 }
 
-//OPCION VER MARCAS
+//CARRITO
+const contenidoProductos = document.getElementById("contenido")
+const verCarrito = document.getElementById("verCarrito")
+const modalCarrito = document.getElementById("containerCarrito")
+
 let productos = [
     {
-        id:1,
-        marca:"printalot",
+        id: 1, 
+        nombre: "Grilot",
+        precio: 3500, 
+        stock: 10,
+        img:"https://grilon3.com.ar/wp-content/uploads/2021/06/silk_azul-350x350.jpg"
     },
-    
     {
-        id:2,
-        marca:"grilot",
+        id: 2,
+        nombre: "printalot",
+        precio: 4800,
+        stock: 6,
+        img:"https://www.tp3d.com.ar/Temp/App_WebSite/App_PictureFiles/Items/2260_800.jpg"
     },
-    
     {
-        id:3,
-        marca:"sans",
+        id: 3,
+        nombre: "Sans",
+        precio: 2700,
+        stock: 3,
+        img:"https://dpq25p1ucac70.cloudfront.net/seller-place-files/mrkl-files/2190/OTRAS%20CATEGORIAS/AC-F3DESUN175MMPLAPL-IMAGEN1_191235920717_3.jpeg"
     }
 ]
+let carrito = []
 
-//Lista de almacen por producto
+productos.forEach((producto) => {
 
-let almacenesPrintalot = [
-    {id: 1, tipo:"pla", precio: "$3500" },
-    {id:2 , tipo: "abs", precio: "$4000"},
-    {id: 3, tipo: "elastica", precio: "$5000"}
-]
+    let content= document.createElement("div")
+    content.className= "marca"
+    content.innerHTML=`
+    <img src=${producto.img}>
+    <h3>${producto.nombre}</h3>
+    <p>$ ${producto.precio}</p>
+    <h4>Quedan ${producto.stock} unidades</h4>
+    `
+    contenidoProductos.append(content)
 
-let almacenesGrilot = [
-    {id: 1, tipo:"pla", precio: "$3500" },
-    {id:2 , tipo: "abs", precio: "$4000"}
-]
+    let comprar =document.createElement("button")
+    comprar.innerText= "comprar"
+    comprar.className= "comprar"
+    
+    content.append(comprar)
+    comprar.addEventListener("click", () =>{
+        carrito.push ({
+            id : producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio
+        })
+        console.log(carrito)
+    })
+    
+})
+verCarrito.addEventListener("click", () =>{
+    let modal = document.createElement("div")
+    modalCarrito.style.display ="block"
+    modalCarrito.innerHTML=""
+    modal.className = "modalCarrito"
+    modal.innerHTML = `
+        <h2>Impresiones VK</h2>
+    `
+modalCarrito.append(modal)
 
-let almacenesSans = [
-    {id: 1, tipo:"pla", precio: "$3500" }
-]
-//Segundo menu
-let lista
-//Tercer menu
-let listaProductos = "ingrese el numero de la marca que le interesa \n-" + productos.map(producto => producto.id + " " + producto.marca).join("\n")
-let opcion2
+    const buttonModal = document.createElement("h1")
+    buttonModal.innerText = "X"
+    modalCarrito.append(buttonModal)
+    buttonModal.addEventListener("click", () =>{
+    modalCarrito.style.display="none"
+    })
 
-let almacenesPr = "Elija el numero de material que decea comprar \n-" + almacenesPrintalot.map(almacen => almacen.id +" "+ almacen.tipo +" "+ almacen.precio).join("\n-")
-let opcionAlmacenP
+carrito.forEach((producto) =>{
+    const recorriendoCarrito = document.createElement("div")
+    recorriendoCarrito.className="bodyCarrito"
+    recorriendoCarrito.innerHTML= `
+    <h3>${producto.nombre}</h3>
+    <p>$ ${producto.precio}</p>
+    `
+modalCarrito.append(recorriendoCarrito)
+})
 
-let almacenesGt = "Elija el numero de material que decea comprar \n-" + almacenesGrilot.map(almacenG => almacenG.id +" "+ almacenG.tipo +" "+ almacenG.precio).join("\n-")
-let opcionAlmacenG
-
-let almacenesSs = "Elija el numero de material que decea comprar \n-" + almacenesSans.map(almacenS => almacenS.id +" "+ almacenS.tipo +" "+ almacenS.precio).join("\n-")
-let opcionAlmacenS
-
-
-do {
-    lista= Number(prompt("Bienvenido a Impresiones-VK 3D! Indique que decea hacer: \n1- Ver productos \n2- Horario de atencion \n3- Nuestro contacto \n4- salir"))
-} while (lista!==1 && lista!==2 && lista !==3  && lista!==4){
-    if(lista===1){
-        do{
-            opcion2 = Number(prompt(listaProductos))
-        }while (opcion2!==1 && opcion2!==2 && opcion2!==3);
-        if (opcion2 === 1) {
-                opcionAlmacenP = Number(prompt(almacenesPr))
-            } else if(opcion2===2){
-                opcionAlmacenG = Number(prompt(almacenesGt))
-            }else{
-                opcionAlmacenS = Number(prompt(almacenesSs))
-            }
-    } else if(lista===2){
-        alert("Estamos atendiendo de: \n- Lu a vi : 09hs a 18hs \n- Sab y fe: 10hs a 14hs \n- Do: cerrado")
-    }else if(lista===3){
-        alert("Mandanos un msj y te responderemos a la brevedad. Nuestros contactos son:\n wpp: 115498**** \n fijo: 4589****")
-    }else{
-        alert("Vuelva pronto!")
-        .break
-    }
-};
+let total = carrito.reduce((acc, el) => acc + el.precio, 0)
+const totalCompra = document.createElement("div")
+totalCompra.className= "totalCompra"
+totalCompra.innerHTML= `
+    <p>Total a pagar : $ ${total}</p>
+`
+modalCarrito.append(totalCompra)
+localStorage.setItem("chango", JSON.stringify(carrito))
+})

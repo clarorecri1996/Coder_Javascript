@@ -11,59 +11,15 @@
     <link rel="stylesheet" href="stilos/style.css">
 </head>
 <body>
-    <div>
-        <h1>Impresiones VK</h1>
-        <div class="productos">
-            <article class="producto">
-                <img src="imagenes/grilot.jpg" alt="Rollo de filamento">
-                <div>
-                    <h3>Grilot</h3>
-                    <p>Filamento Grilot. <br>Peso: 1kg <br>Precio: $3500</p>
-                </div>
-                <span>
-                    <span>Cantidad</span>
-                    <span>
-                        <form action="">
-                            <label for="numero"></label>
-                            <input type="number" id="numero" min="1" max="5">
-                        </form>
-                    </span>
-            </article>
-            <article class="producto">
-                <img src="imagenes/prinlot.jpg" alt="Rollo de filamento">
-                <div>
-                    <h3>Printalot</h3>
-                    <p>Filamento Printalot. <br>Peso: 1kg <br>Precio: $4800</p>
-                </div>
-                <span>
-                    <span>Cantidad</span>
-                    <span>
-                        <form action="">
-                            <label for="numero"></label>
-                            <input type="number" id="numero" min="1" max="5">
-                        </form>
-                    </span>
-            </article>
-            <article class="producto">
-                <img src="imagenes/sans.jpg" alt="Rollo de filamento">
-                <div>
-                    <h3>Grilot</h3>
-                    <p>Filamento Sans. <br>Peso: 1kg <br>Precio: $2700</p>
-                    <span>
-                        <span>Cantidad</span>
-                        <span>
-                            <form action="">
-                                <label for="numero"></label>
-                                <input type="number" id="numero" min="1" max="5">
-                            </form>
-                        </span>
-                    </span>
-                </div>
-            </article>
-           
-        </div>
-    </div>
-    
+    <nav>
+        <a id="verCarrito">🛒</a>
+    </nav>
+    <h1>Impresiones VK</h1>
+    <!--contenido de los productos-->
+    <div class="productos" id="contenido"></div>
+
+    <!--modal container-->
+    <div id="containerCarrito"></div>
     <script src="javascript/script.js"></script>
 </body>
 </html>

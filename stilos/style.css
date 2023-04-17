@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
 }
-.producto img{
+.marca img{
     width: 300px;
     height: 300px;
 }

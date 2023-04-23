@@ -1,81 +1,9 @@
-let menu = "1- inciar sesion \n2- iniciar con otra cuenta \n3- salir"
-
-let user = "claudio"
-let pass= 12345
-//cuenta nueva
-let userNew
-let passNew
-//menus
-let opcion
-
-//Reintento para una sesion fallida
-function reintentar() {
-    if(user==usuario && pass==contrasena){
-        alert("contraseña incorrecta, intente nuevamenete")
-    }else{
-        usuario = prompt("ingrese usuario")
-        contrasena = prompt("ingrese contraseña")
-        if(user==usuario && pass==contrasena){
-            alert(`Bienvenido ${usuario}`)
-        }else{
-            alert("contraseña incorrecta, intente nuevamenete")
-            if(user==usuario && pass==contrasena){
-                alert(`Bienvenido ${usuario}`)
-            }else{
-                usuario = prompt("ingrese usuario")
-                contrasena = prompt("ingrese contraseña")
-                if(user==usuario && pass==contrasena){
-                    alert(`Bienvenido ${usuario}`)  
-                } else{
-                    alert("limite de intento superado, intentelo mas tarde")
-                    .break
-                }
-            }
-        }
-    }
-}
-
-//Inicio sesion
-do{
-    alert (menu)
-    opcion = Number(prompt("ingrese el numero de la opcion"))
-    let usuario ;
-    let contrasena ;
-    
-}while(opcion!==1 && opcion!==2 && opcion!==3){
-    if(opcion===1){
-        usuario = prompt("ingrese usuario")
-        contrasena = prompt("ingrese contraseña")
-        if(user==usuario && pass==contrasena){
-            alert(`Bienvenido ${usuario}`)
-            
-        }else{
-            alert("contraseña incorrecta, intente nuevamenete")
-            reintentar()
-            
-        }
-    }else if(opcion===2){
-        userNew = prompt(`ingrese nuevo usuario`)
-        passNew = prompt(`ingrese nueva contraseña`)
-        function NuevoUsuario (userNew, passNew){
-            this.userNew = userNew
-            this.passNew = passNew
-            this.nuevaSesion = function(){
-                return this.userNew +" "+ this.passNew
-            }
-        }
-        let usuario1 = new NuevoUsuario(userNew, passNew)
-        alert ("su nuevo usuario y contraseña son" + " " +usuario1.nuevaSesion())
-    }else{
-        alert(`Vuelva pronto`)
-        .break
-    }
-}
-
 //CARRITO
 const contenidoProductos = document.getElementById("contenido")
 const verCarrito = document.getElementById("verCarrito")
 const modalCarrito = document.getElementById("containerCarrito")
+
+
 
 let productos = [
     {
@@ -125,11 +53,13 @@ productos.forEach((producto) => {
             nombre: producto.nombre,
             precio: producto.precio
         })
-        console.log(carrito)
+        
+        localStorage.setItem("chango", JSON.stringify(carrito))
     })
     
 })
 verCarrito.addEventListener("click", () =>{
+    carrito = JSON.parse(localStorage.getItem("chango"))
     let modal = document.createElement("div")
     modalCarrito.style.display ="block"
     modalCarrito.innerHTML=""
@@ -163,5 +93,4 @@ totalCompra.innerHTML= `
     <p>Total a pagar : $ ${total}</p>
 `
 modalCarrito.append(totalCompra)
-localStorage.setItem("chango", JSON.stringify(carrito))
 })

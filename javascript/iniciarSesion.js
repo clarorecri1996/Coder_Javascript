@@ -4,10 +4,10 @@ inciarSesion.addEventListener("click",() =>{
     (async () => {
     
         const { value: email } = await Swal.fire({
-            title: 'Input email address',
+            title: 'Ingrese su email',
             input: 'email',
-            inputLabel: 'Your email address',
-            inputPlaceholder: 'Enter your email address'
+            inputLabel: 'Ingrese aqui su email',
+            inputPlaceholder: 'email'
         })
         
         if (email) {
@@ -15,10 +15,10 @@ inciarSesion.addEventListener("click",() =>{
         }
         
         const { value: password } = await Swal.fire({
-            title: 'Enter your password',
+            title: 'Ingrese su contraseña',
             input: 'password',
-            inputLabel: 'Password',
-            inputPlaceholder: 'Enter your password',
+            inputLabel: 'contraseña',
+            inputPlaceholder: 'Ingrese la contraseña',
             inputAttributes: {
                 maxlength: 10,
                 autocapitalize: 'off',
